@@ -1,10 +1,3 @@
-// Add the styles
-const style = document.createElement("link");
-style.rel = "stylesheet";
-style.href = "https://fun.mark.ie/read-this-page/ma11y/style.css";
-const head = document.querySelector("head");
-head.appendChild(style);
-
 // Variables
 const body = document.querySelector("body");
 const container = `
@@ -26,6 +19,13 @@ const stopButton = document.querySelector(".ma11y-tools__button--stop");
 const selectTextButton = document.querySelector(
   ".ma11y-tools__button--selected"
 );
+
+// Add the styles
+const style = document.createElement("link");
+style.rel = "stylesheet";
+style.href = "https://fun.mark.ie/read-this-page/ma11y/style.css";
+const head = document.querySelector("head");
+head.appendChild(style);
 
 // Read out loud function
 function readOutLoud(message) {
