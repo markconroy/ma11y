@@ -7,6 +7,9 @@ head.appendChild(style);
 
 // Variables
 const body = document.querySelector("body");
+const oldBody = body.innerHTML;
+const newBody = `<div class="ma11y-container-body">${oldBody}</div>`;
+body.innerHTML = newBody;
 const container = `
   <div id="ma11y-tools" class="ma11y-tools">
     <div class="ma11y-container">
@@ -48,7 +51,7 @@ noScripts.forEach((noScript) => {
 
 // Read the entire page. This is what makes this a very simple reader.
 // We could easily make it much more complex.
-const itemToRead = document.querySelector("body").textContent;
+const itemToRead = document.querySelector(".ma11y-container-body").textContent;
 
 // Event listeners
 startButton.addEventListener("click", () => {
