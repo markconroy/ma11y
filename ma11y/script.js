@@ -1,7 +1,7 @@
 // Add the styles
 const style = document.createElement("link");
 style.rel = "stylesheet";
-style.href = "http://ma11y.mc.anner.ie/ma11y/style.css";
+style.href = "https://ma11y.mark.ie/ma11y/style.css";
 const head = document.querySelector("head");
 head.appendChild(style);
 
@@ -77,18 +77,15 @@ selectTextButton.addEventListener("click", () => {
 });
 
 // Colour contrast
-const contrastButtons = document.querySelectorAll(".ma11y-tools__button--contrast");
 const contrastButton1 = document.querySelector(".ma11y-tools__button--contrast-1");
 const contrastButton2 = document.querySelector(".ma11y-tools__button--contrast-2");
-contrastButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-  });
-});
+
 contrastButton1.addEventListener("click", () => {
   contents.classList.add("ma11y-container-body--contrast");
   contents.classList.add("ma11y-container-body--contrast-1");
   contents.classList.remove("ma11y-container-body--contrast-2");
 });
+
 contrastButton2.addEventListener("click", () => {
   contents.classList.add("ma11y-container-body--contrast");
   contents.classList.add("ma11y-container-body--contrast-2");
