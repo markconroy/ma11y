@@ -78,8 +78,8 @@ selectTextButton.addEventListener("click", () => {
 
 // Colour contrast
 const contrastButtons = document.querySelectorAll(".ma11y-tools__button--contrast");
-const contrastButtons1 = document.querySelectorAll(".ma11y-tools__button--contrast1");
-const contrastButtons2 = document.querySelectorAll(".ma11y-tools__button--contrast2");
+const contrastButton1 = document.querySelectorAll(".ma11y-tools__button--contrast1");
+const contrastButton2 = document.querySelectorAll(".ma11y-tools__button--contrast2");
 contrastButtons.forEach((button) => {
   button.addEventListener("click", () => {
     contents.classList.toggle("ma11y-container-body--contrast");
