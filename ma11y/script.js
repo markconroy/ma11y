@@ -10,6 +10,7 @@ const body = document.querySelector("body");
 const oldBody = body.innerHTML;
 const newBody = `<div class="ma11y-container-body">${oldBody}</div>`;
 body.innerHTML = newBody;
+
 const container = `
   <div id="ma11y-tools" class="ma11y-tools">
     <div class="ma11y-container">
@@ -17,6 +18,7 @@ const container = `
         <button type="button" class="ma11y-tools__button ma11y-tools__button--play">Start</button>
         <button type="button" class="ma11y-tools__button ma11y-tools__button--stop">Stop</button>
         <button type="button" class="ma11y-tools__button ma11y-tools__button--selected">Read Selected Text</button>
+        <button type="button" class="ma11y-tools__button ma11y-tools__button--contrast">Colour Contrast</button>
       </div>
     </div>
   </div>
@@ -40,18 +42,22 @@ function readOutLoud(message) {
   window.speechSynthesis.speak(speech);
 }
 
-// Removing the noscript tags, since this can't work without JS,
-// and we don't want something like a Google Analytics iframe source
-// read out.
-const noScripts = document.querySelectorAll("noscript");
+const contents = document.querySelector(".ma11y-container-body");
+// Removing the script and noscript tags from the page as we don't want
+// to read out things like Google Analytics id, or schema.org markup.
+let itemsToRemove = [];
+const noScripts = Array.from(contents.querySelectorAll("noscript"));
+const scripts = Array.from(contents.querySelectorAll("script"));
 
-noScripts.forEach((noScript) => {
-  noScript.remove();
+itemsToRemove = [...noScripts, ...scripts];
+console.log(itemsToRemove);
+itemsToRemove.forEach((item) => {
+  item.remove();
 });
 
-// Read the entire page. This is what makes this a very simple reader.
-// We could easily make it much more complex.
-const itemToRead = document.querySelector(".ma11y-container-body").textContent;
+const itemToRead = contents.textContent;
+console.log(itemToRead);
+console.log(contents.innerHTML);
 
 // Event listeners
 startButton.addEventListener("click", () => {
@@ -66,4 +72,10 @@ stopButton.addEventListener("click", () => {
 selectTextButton.addEventListener("click", () => {
   const selectedText = window.getSelection().toString();
   readOutLoud(selectedText);
+});
+
+// Colour contrast
+const contrastButton = document.querySelector(".ma11y-tools__button--contrast");
+contrastButton.addEventListener("click", () => {
+  contents.classList.toggle("ma11y-container-body--contrast");
 });
