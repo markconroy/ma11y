@@ -1,8 +1,3 @@
-.ma11y-container-body--contrast * {
-  background-color: black !important;
-  color: white !important;
-}
-
 .ma11y-tools {
   position: relative;
   z-index: 2147483647;
@@ -20,6 +15,7 @@
   padding-left: 1rem;
 }
 
+/* Buttons Styles */
 .ma11y-buttons {
   display: flex;
   gap: 1rem;
@@ -33,6 +29,7 @@
   border-radius: 0;
   margin-bottom: 0;
 }
+
 .ma11y-tools__button--play {
   background-color: aquamarine;
 }
@@ -43,11 +40,15 @@
   background-color: rgb(226, 226, 226);
 }
 
-.ma11y-tools__button--contrast1 {
-  background-color: black;
-  color: white;
+/* Color Contrasts */
+.ma11y-tools__button--contrast-1,
+.ma11y-container-body--contrast-1 * {
+  background-color: black !important;
+  color: white !important;
 }
-.ma11y-tools__button--contrast2 {
-  background-color: black;
-  color: yellow;
+
+.ma11y-tools__button--contrast-2,
+.ma11y-container-body--contrast-2 * {
+  background-color: #efef00 !important;
+  color: black !important;
 }
