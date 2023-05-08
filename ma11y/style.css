@@ -41,7 +41,7 @@
 }
 
 /* Color Contrasts */
-.ma11y-tools__button--contrast a {
+.ma11y-container-body--contrast a {
   text-decoration: underline !important;
 }
 
