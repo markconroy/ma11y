@@ -42,3 +42,8 @@
 .ma11y-tools__button--selected {
   background-color: rgb(226, 226, 226);
 }
+
+.ma11y-tools__button--contrast {
+  background-color: black;
+  color: white;
+}
