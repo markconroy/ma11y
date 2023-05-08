@@ -43,7 +43,11 @@
   background-color: rgb(226, 226, 226);
 }
 
-.ma11y-tools__button--contrast {
+.ma11y-tools__button--contrast1 {
   background-color: black;
   color: white;
+}
+.ma11y-tools__button--contrast2 {
+  background-color: black;
+  color: yellow;
 }

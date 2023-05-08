@@ -18,7 +18,8 @@ const container = `
         <button type="button" class="ma11y-tools__button ma11y-tools__button--play">Start</button>
         <button type="button" class="ma11y-tools__button ma11y-tools__button--stop">Stop</button>
         <button type="button" class="ma11y-tools__button ma11y-tools__button--selected">Read Selected Text</button>
-        <button type="button" class="ma11y-tools__button ma11y-tools__button--contrast">Colour Contrast</button>
+        <button type="button" class="ma11y-tools__button ma11y-tools__button--contrast1">Colour Contrast</button>
+        <button type="button" class="ma11y-tools__button ma11y-tools__button--contrast2">Colour Contrast</button>
       </div>
     </div>
   </div>
@@ -46,6 +47,8 @@ const contents = document.querySelector(".ma11y-container-body");
 const contentsCopy = contents.cloneNode(true);
 // Removing the script and noscript tags from the page as we don't want
 // to read out things like Google Analytics id, or schema.org markup.
+// Also removing style tags. Strangely, some sites have style tags in the
+// body of the page.
 let itemsToRemove = [];
 const noScripts = Array.from(contentsCopy.querySelectorAll("noscript"));
 const scripts = Array.from(contentsCopy.querySelectorAll("script"));
@@ -74,7 +77,17 @@ selectTextButton.addEventListener("click", () => {
 });
 
 // Colour contrast
-const contrastButton = document.querySelector(".ma11y-tools__button--contrast");
+const contrastButtons = document.querySelectorAll(".ma11y-tools__button--contrast");
+const contrastButtons1 = document.querySelectorAll(".ma11y-tools__button--contrast1");
+const contrastButtons2 = document.querySelectorAll(".ma11y-tools__button--contrast2");
+contrastButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    contents.classList.toggle("ma11y-container-body--contrast");
+  });
+});
+contrastButton1.addEventListener("click", () => {
+  contents.classList.toggle("ma11y-container-body--contrast-1");
+});
 contrastButton.addEventListener("click", () => {
-  contents.classList.toggle("ma11y-container-body--contrast");
+  contents.classList.toggle("ma11y-container-body--contrast-2");
 });
