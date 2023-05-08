@@ -42,7 +42,7 @@
 
 /* Color Contrasts */
 .ma11y-tools__button--contrast a {
-  text-decoration: underline;
+  text-decoration: underline !important;
 }
 
 .ma11y-tools__button--contrast-1,
