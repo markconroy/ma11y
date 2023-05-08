@@ -43,21 +43,19 @@ function readOutLoud(message) {
 }
 
 const contents = document.querySelector(".ma11y-container-body");
+const contentsCopy = contents.cloneNode(true);
 // Removing the script and noscript tags from the page as we don't want
 // to read out things like Google Analytics id, or schema.org markup.
 let itemsToRemove = [];
-const noScripts = Array.from(contents.querySelectorAll("noscript"));
-const scripts = Array.from(contents.querySelectorAll("script"));
+const noScripts = Array.from(contentsCopy.querySelectorAll("noscript"));
+const scripts = Array.from(contentsCopy.querySelectorAll("script"));
 
 itemsToRemove = [...noScripts, ...scripts];
-console.log(itemsToRemove);
 itemsToRemove.forEach((item) => {
   item.remove();
 });
 
-const itemToRead = contents.textContent;
-console.log(itemToRead);
-console.log(contents.innerHTML);
+const itemToRead = contentsCopy.textContent;
 
 // Event listeners
 startButton.addEventListener("click", () => {
