@@ -49,8 +49,9 @@ const contentsCopy = contents.cloneNode(true);
 let itemsToRemove = [];
 const noScripts = Array.from(contentsCopy.querySelectorAll("noscript"));
 const scripts = Array.from(contentsCopy.querySelectorAll("script"));
+const styles = Array.from(contentsCopy.querySelectorAll("style"));
 
-itemsToRemove = [...noScripts, ...scripts];
+itemsToRemove = [...noScripts, ...scripts, ...styles];
 itemsToRemove.forEach((item) => {
   item.remove();
 });
