@@ -41,6 +41,10 @@
 }
 
 /* Color Contrasts */
+.ma11y-tools__button--contrast a {
+  text-decoration: underline;
+}
+
 .ma11y-tools__button--contrast-1,
 .ma11y-container-body--contrast-1 * {
   background-color: black !important;
