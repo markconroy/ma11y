@@ -20,11 +20,6 @@ const ma11yColorContrastDialog = `
   <dialog>
 `;
 
-const body = document.querySelector("body");
-const oldBody = body.innerHTML;
-const newBody = `<div class="ma11y-container-body">${oldBody}</div>`;
-body.innerHTML = newBody;
-
 const ma11yToolbar = `
 <div id="ma11y-tools" class="ma11y-tools">
   <div class="ma11y-container">
@@ -38,7 +33,12 @@ const ma11yToolbar = `
   </div>
 </div>
 `;
-// Add the ma11yToolbar to the page
+
+const body = document.querySelector("body");
+const oldBody = body.innerHTML;
+const newBody = `<div class="ma11y-container-body">${oldBody}</div>`;
+body.innerHTML = newBody;
+body.classList.add("ma11y-body");
 body.insertAdjacentHTML("afterbegin", ma11yToolbar);
 body.insertAdjacentHTML("beforeend", ma11yColorContrastDialog);
 
@@ -125,6 +125,7 @@ colorContrastButtons.forEach((colorContrastButton) => {
     contents.classList.add("ma11y-container-body--contrast");
     contents.removeAttribute('data-contrast');
     contents.setAttribute('data-contrast', index);
+    body.setAttribute('data-contrast', index);
     colorContrastButtons.forEach((button) => {
       button.setAttribute('data-active', 'false');
     });
@@ -132,6 +133,7 @@ colorContrastButtons.forEach((colorContrastButton) => {
     if(index === '0') {
       contents.removeAttribute('data-contrast');
       contents.classList.remove("ma11y-container-body--contrast");
+      body.removeAttribute('data-contrast');
     }
   });
 });

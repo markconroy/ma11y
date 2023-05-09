@@ -1,6 +1,17 @@
-.ma11y-tools {
+.ma11y-body {
+  position: absolute;
+  inset: 0;
+}
+
+.ma11y-container-body {
   position: relative;
+}
+
+.ma11y-tools {
+  position: fixed;
   z-index: 2147483647;
+  top: 0;
+  left: 0;
   width: 100%;
   padding: 1rem;
   border-bottom: 2px solid black;
@@ -65,6 +76,7 @@
 }
 
 .ma11y-tools__button--contrast[data-index="1"],
+.ma11y-body[data-contrast="1"],
 .ma11y-container-body[data-contrast="1"],
 .ma11y-container-body[data-contrast="1"] * {
   background-color: black !important;
@@ -76,6 +88,7 @@
   color: black !important;
 }
 .ma11y-tools__button--contrast[data-index="2"],
+.ma11y-body[data-contrast="2"],
 .ma11y-container-body[data-contrast="2"],
 .ma11y-container-body[data-contrast="2"] * {
   background-color: yellow !important;
@@ -87,6 +100,7 @@
   color: yellow !important;
 }
 .ma11y-tools__button--contrast[data-index="3"],
+.ma11y-body[data-contrast="3"],
 .ma11y-container-body[data-contrast="3"],
 .ma11y-container-body[data-contrast="3"] * {
   background-color: red !important;
@@ -98,6 +112,7 @@
   color: red !important;
 }
 .ma11y-tools__button--contrast[data-index="4"],
+.ma11y-body[data-contrast="4"],
 .ma11y-container-body[data-contrast="4"],
 .ma11y-container-body[data-contrast="4"] * {
   background-color: blue !important;
@@ -109,6 +124,7 @@
   color: blue !important;
 }
 .ma11y-tools__button--contrast[data-index="5"],
+.ma11y-body[data-contrast="5"],
 .ma11y-container-body[data-contrast="5"],
 .ma11y-container-body[data-contrast="5"] * {
   background-color: yellow !important;
