@@ -46,6 +46,11 @@
   background-color: yellow;
 }
 
+/* Dialogs */
+.ma11y-dialog {
+  width: 90vw;
+}
+
 /* Color Contrasts */
 .ma11y-container-body--contrast a {
   text-decoration: underline !important;
