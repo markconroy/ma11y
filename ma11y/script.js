@@ -37,6 +37,7 @@ const ma11yToolbar = `
 </div>
 `;
 
+let ma11yToolbarHeight;
 const body = document.querySelector("body");
 const oldBody = body.innerHTML;
 const newBody = `<div class="ma11y-container-body">${oldBody}</div>`;
@@ -44,6 +45,7 @@ body.innerHTML = newBody;
 body.classList.add("ma11y-body");
 body.insertAdjacentHTML("afterbegin", ma11yToolbar);
 body.insertAdjacentHTML("beforeend", ma11yColorContrastDialog);
+const mallyContainer = document.querySelector(".ma11y-container-body");
 
 const playButton = document.querySelector(".ma11y-tools__button--play");
 const pauseButton = document.querySelector(".ma11y-tools__button--pause");
@@ -61,6 +63,19 @@ if (dialogButtons) {
     });
   });
 }
+
+function handleMa11yToolbarHeight() {
+  ma11yToolbarHeight = document.querySelector(".ma11y-tools").offsetHeight;
+  mallyContainer.style.paddingTop = `${ma11yToolbarHeight}px`;
+}
+
+setTimeout(() => {
+  handleMa11yToolbarHeight();
+}, 50);
+
+window.addEventListener("resize", () => {
+  handleMa11yToolbarHeight();
+});
 
 // Read out loud function
 function readOutLoud(message) {
