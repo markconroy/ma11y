@@ -29,7 +29,8 @@ const ma11yToolbar = `
 <div id="ma11y-tools" class="ma11y-tools">
   <div class="ma11y-container">
     <div class="ma11y-buttons">
-      <button type="button" class="ma11y-tools__button ma11y-tools__button--play">Start</button>
+      <button type="button" class="ma11y-tools__button ma11y-tools__button--play">Play</button>
+      <button type="button" class="ma11y-tools__button ma11y-tools__button--pause" data-paused="false">Pause</button>
       <button type="button" class="ma11y-tools__button ma11y-tools__button--stop">Stop</button>
       <button type="button" class="ma11y-tools__button ma11y-tools__button--selected">Read Selected Text</button>
       <button type="button" class="ma11y-tools__button ma11y-tools__button--color-contrast" data-dialog="color-contrast">Color Contrast</button>
@@ -41,7 +42,8 @@ const ma11yToolbar = `
 body.insertAdjacentHTML("afterbegin", ma11yToolbar);
 body.insertAdjacentHTML("beforeend", ma11yColorContrastDialog);
 
-const startButton = document.querySelector(".ma11y-tools__button--play");
+const playButton = document.querySelector(".ma11y-tools__button--play");
+const pauseButton = document.querySelector(".ma11y-tools__button--pause");
 const stopButton = document.querySelector(".ma11y-tools__button--stop");
 const selectTextButton = document.querySelector(
   ".ma11y-tools__button--selected"
@@ -85,12 +87,28 @@ itemsToRemove.forEach((item) => {
 const itemToRead = contentsCopy.textContent;
 
 // Event listeners
-startButton.addEventListener("click", () => {
+playButton.addEventListener("click", () => {
   readOutLoud(itemToRead);
+});
+
+pauseButton.addEventListener("click", () => {
+  const pauseButtonState = pauseButton.getAttribute("data-paused");
+  if (pauseButtonState === "false") {
+    pauseButton.setAttribute("data-paused", "true");
+    window.speechSynthesis.pause();
+    pauseButton.textContent = "Resume";
+  } else {
+    pauseButton.setAttribute("data-paused", "false");
+    window.speechSynthesis.resume();
+    pauseButton.textContent = "Pause";
+  }
 });
 
 stopButton.addEventListener("click", () => {
   window.speechSynthesis.cancel();
+  pauseButton.setAttribute("data-paused", "false");
+  window.speechSynthesis.resume();
+  pauseButton.textContent = "Pause";
 });
 
 // Read selected text
