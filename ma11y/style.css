@@ -4,7 +4,7 @@
   width: 100%;
   padding: 1rem;
   border-bottom: 2px solid black;
-  background-color: azure;
+  background-color: beige;
 }
 
 .ma11y-container {
@@ -33,11 +33,17 @@
 .ma11y-tools__button--play {
   background-color: aquamarine;
 }
+.ma11y-tools__button--pause {
+  background-color: orange;
+}
 .ma11y-tools__button--stop {
   background-color: rgb(255, 167, 167);
 }
 .ma11y-tools__button--selected {
-  background-color: rgb(226, 226, 226);
+  background-color: azure;
+}
+.ma11y-tools__button--color-contrast {
+  background-color: yellow;
 }
 
 /* Color Contrasts */
