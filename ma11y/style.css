@@ -45,10 +45,35 @@
   text-decoration: underline !important;
 }
 
-.ma11y-tools__button--contrast-1,
-.ma11y-container-body--contrast-1 * {
+.ma11y-tools__button[data-index="1"],
+.ma11y-container-body[data-contrast="1"],
+.ma11y-container-body[data-contrast="1"] * {
   background-color: black !important;
   color: white !important;
+}
+.ma11y-tools__button[data-index="2"],
+.ma11y-container-body[data-contrast="2"],
+.ma11y-container-body[data-contrast="2"] * {
+  background-color: yellow !important;
+  color: black !important;
+}
+.ma11y-tools__button[data-index="3"],
+.ma11y-container-body[data-contrast="3"],
+.ma11y-container-body[data-contrast="3"] * {
+  background-color: red !important;
+  color: white !important;
+}
+.ma11y-tools__button[data-index="4"],
+.ma11y-container-body[data-contrast="4"],
+.ma11y-container-body[data-contrast="4"] * {
+  background-color: blue !important;
+  color: white !important;
+}
+.ma11y-tools__button[data-index="5"],
+.ma11y-container-body[data-contrast="5"],
+.ma11y-container-body[data-contrast="5"] * {
+  background-color: yellow !important;
+  color: blue !important;
 }
 
 .ma11y-tools__button--contrast-2,
