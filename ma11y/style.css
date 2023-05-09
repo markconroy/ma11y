@@ -51,6 +51,10 @@
   text-decoration: underline !important;
 }
 
+.ma11y-tools__button--contrast[data-active="true"] {
+  box-shadow: 0 10px 0 black;
+}
+
 .ma11y-tools__button[data-index="1"],
 .ma11y-container-body[data-contrast="1"],
 .ma11y-container-body[data-contrast="1"] * {
