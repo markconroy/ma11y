@@ -115,7 +115,7 @@ function handleStopReadOutLoud() {
 }
 stopButton.addEventListener("click", handleStopReadOutLoud);
 
-// Read selected text
+// Read selected text.
 selectTextButton.addEventListener("click", () => {
   handleStopReadOutLoud();
   const selectedText = window.getSelection().toString();
