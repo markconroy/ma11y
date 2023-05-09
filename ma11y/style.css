@@ -55,44 +55,67 @@
 .ma11y-container-body--contrast a {
   text-decoration: underline !important;
 }
+.ma11y-tools__button--contrast:focus {
+  outline: 3px dashed black;
+  outline-offset: 3px;
+}
 
 .ma11y-tools__button--contrast[data-active="true"] {
   box-shadow: 0 10px 0 black;
 }
 
-.ma11y-tools__button[data-index="1"],
+.ma11y-tools__button--contrast[data-index="1"],
 .ma11y-container-body[data-contrast="1"],
 .ma11y-container-body[data-contrast="1"] * {
   background-color: black !important;
   color: white !important;
 }
-.ma11y-tools__button[data-index="2"],
+.ma11y-tools__button--contrast[data-index="1"]:focus,
+.ma11y-tools__button--contrast[data-index="1"]:hover {
+  background-color: white !important;
+  color: black !important;
+}
+.ma11y-tools__button--contrast[data-index="2"],
 .ma11y-container-body[data-contrast="2"],
 .ma11y-container-body[data-contrast="2"] * {
   background-color: yellow !important;
   color: black !important;
 }
-.ma11y-tools__button[data-index="3"],
+.ma11y-tools__button--contrast[data-index="2"]:focus,
+.ma11y-tools__button--contrast[data-index="2"]:hover {
+  background-color: black !important;
+  color: yellow !important;
+}
+.ma11y-tools__button--contrast[data-index="3"],
 .ma11y-container-body[data-contrast="3"],
 .ma11y-container-body[data-contrast="3"] * {
   background-color: red !important;
   color: white !important;
 }
-.ma11y-tools__button[data-index="4"],
+.ma11y-tools__button--contrast[data-index="3"]:focus,
+.ma11y-tools__button--contrast[data-index="3"]:hover {
+  background-color: white !important;
+  color: red !important;
+}
+.ma11y-tools__button--contrast[data-index="4"],
 .ma11y-container-body[data-contrast="4"],
 .ma11y-container-body[data-contrast="4"] * {
   background-color: blue !important;
   color: white !important;
 }
-.ma11y-tools__button[data-index="5"],
+.ma11y-tools__button--contrast[data-index="4"]:focus,
+.ma11y-tools__button--contrast[data-index="4"]:hover {
+  background-color: white !important;
+  color: blue !important;
+}
+.ma11y-tools__button--contrast[data-index="5"],
 .ma11y-container-body[data-contrast="5"],
 .ma11y-container-body[data-contrast="5"] * {
   background-color: yellow !important;
   color: blue !important;
 }
-
-.ma11y-tools__button--contrast-2,
-.ma11y-container-body--contrast-2 * {
-  background-color: #efef00 !important;
-  color: black !important;
+.ma11y-tools__button--contrast[data-index="5"]:focus,
+.ma11y-tools__button--contrast[data-index="5"]:hover {
+  background-color: blue !important;
+  color: yellow !important;
 }
