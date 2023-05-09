@@ -9,7 +9,7 @@ head.appendChild(style);
 const ma11yColorContrastDialog = `
   <dialog id="color-contrast" class="ma11y-dialog ma11y-dialog--contrast">
     <h2>Choose color contrast</h2>
-    <div className="ma11y-buttons">
+    <div class="ma11y-buttons">
       <button type="button" class="ma11y-tools__button ma11y-tools__button--contrast ma11y-tools__button--contrast-0" data-index="0" data-active="false">Default</button>
       <button type="button" class="ma11y-tools__button ma11y-tools__button--contrast ma11y-tools__button--contrast-1" data-index="1" data-active="false">Black/White</button>
       <button type="button" class="ma11y-tools__button ma11y-tools__button--contrast ma11y-tools__button--contrast-2" data-index="2" data-active="false">Yellow/Black</button>
