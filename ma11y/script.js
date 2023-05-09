@@ -1,9 +1,12 @@
 // Add the styles
-const style = document.createElement("link");
-style.rel = "stylesheet";
-style.href = "https://ma11y.mark.ie/ma11y/style.css";
-const head = document.querySelector("head");
-head.appendChild(style);
+function handleAddMa11yStyles() {
+  const style = document.createElement("link");
+  style.rel = "stylesheet";
+  style.href = "https://ma11y.mark.ie/ma11y/style.css";
+  const head = document.querySelector("head");
+  head.appendChild(style);
+}
+handleAddMa11yStyles();
 
 // Variables
 const ma11yColorContrastDialog = `
@@ -24,10 +27,10 @@ const ma11yToolbar = `
 <div id="ma11y-tools" class="ma11y-tools">
   <div class="ma11y-container">
     <div class="ma11y-buttons">
-      <button type="button" class="ma11y-tools__button ma11y-tools__button--play">Play</button>
-      <button type="button" class="ma11y-tools__button ma11y-tools__button--pause" data-paused="false">Pause</button>
+      <button type="button" class="ma11y-tools__button ma11y-tools__button--play" data-status="stopped">Play</button>
       <button type="button" class="ma11y-tools__button ma11y-tools__button--stop">Stop</button>
       <button type="button" class="ma11y-tools__button ma11y-tools__button--selected">Read Selected Text</button>
+      <button type="button" class="ma11y-tools__button ma11y-tools__button--text" data-active="false">Text Mode</button>
       <button type="button" class="ma11y-tools__button ma11y-tools__button--color-contrast" data-dialog="color-contrast">Color Contrast</button>
     </div>
   </div>
@@ -48,6 +51,7 @@ const stopButton = document.querySelector(".ma11y-tools__button--stop");
 const selectTextButton = document.querySelector(
   ".ma11y-tools__button--selected"
 );
+const textModeButton = document.querySelector(".ma11y-tools__button--text");
 const dialogButtons = document.querySelectorAll('[data-dialog]');
 if (dialogButtons) {
   dialogButtons.forEach((dialogButton) => {
@@ -88,34 +92,59 @@ const itemToRead = contentsCopy.textContent;
 
 // Event listeners
 playButton.addEventListener("click", () => {
-  readOutLoud(itemToRead);
-});
-
-pauseButton.addEventListener("click", () => {
-  const pauseButtonState = pauseButton.getAttribute("data-paused");
-  if (pauseButtonState === "false") {
-    pauseButton.setAttribute("data-paused", "true");
+  const playButtonState = playButton.getAttribute("data-status");
+  if (playButtonState === "stopped") {
+    playButton.setAttribute("data-status", "playing");
+    playButton.textContent = "Pause";
+    readOutLoud(itemToRead);
+  } else if (playButtonState === "playing") {
+    playButton.setAttribute("data-status", "paused");
+    playButton.textContent = "Resume";
     window.speechSynthesis.pause();
-    pauseButton.textContent = "Resume";
-  } else {
-    pauseButton.setAttribute("data-paused", "false");
+  } else if (playButtonState === "paused") {
+    playButton.setAttribute("data-status", "playing");
+    playButton.textContent = "Pause";
     window.speechSynthesis.resume();
-    pauseButton.textContent = "Pause";
   }
 });
 
-stopButton.addEventListener("click", () => {
+function handleStopReadOutLoud() {
   window.speechSynthesis.cancel();
-  pauseButton.setAttribute("data-paused", "false");
-  window.speechSynthesis.resume();
-  pauseButton.textContent = "Pause";
-});
+  playButton.setAttribute("data-status", "stopped");
+  playButton.textContent = "Play";
+}
+stopButton.addEventListener("click", handleStopReadOutLoud);
 
 // Read selected text
 selectTextButton.addEventListener("click", () => {
+  handleStopReadOutLoud();
   const selectedText = window.getSelection().toString();
   readOutLoud(selectedText);
 });
+
+// Text mode
+textModeButton.addEventListener("click", () => {
+  const textModeButtonState = textModeButton.getAttribute("data-active");
+  const stylesheets = Array.from(document.querySelectorAll("link[rel=stylesheet]"));
+  if (textModeButtonState === "false") {
+    textModeButton.setAttribute("data-active", "true");
+    console.log(stylesheets);
+    stylesheets.forEach((sheet) => {
+      const sheetHref = sheet.href;
+      sheet.setAttribute('data-href', sheetHref);
+      sheet.removeAttribute("href");
+    });
+    handleAddMa11yStyles();
+  } else if (textModeButtonState === "true") {
+    stylesheets.forEach((sheet) => {
+      const sheetHref = sheet.getAttribute('data-href');
+      sheet.setAttribute("href", sheetHref);
+      sheet.removeAttribute('data-href');
+    });
+    textModeButton.setAttribute("data-active", "false");
+  }
+});
+
 
 // Colour contrast
 const colorContrastButtons = document.querySelectorAll('.ma11y-tools__button--contrast');
