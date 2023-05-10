@@ -24,7 +24,7 @@ const ma11yColorContrastDialog = `
 `;
 
 const ma11yToolbar = `
-<div id="ma11y-tools" class="ma11y-tools">
+<div id="ma11y-tools" class="ma11y-tools" hidden>
   <div class="ma11y-container">
     <div class="ma11y-buttons">
       <button type="button" class="ma11y-tools__button ma11y-tools__button--play" data-status="stopped">Play</button>
@@ -46,6 +46,7 @@ body.classList.add("ma11y-body");
 body.insertAdjacentHTML("afterbegin", ma11yToolbar);
 body.insertAdjacentHTML("beforeend", ma11yColorContrastDialog);
 const mallyContainer = document.querySelector(".ma11y-container-body");
+const ma11yToolbarElement = document.querySelector('#ma11y-tools');
 
 const playButton = document.querySelector(".ma11y-tools__button--play");
 const pauseButton = document.querySelector(".ma11y-tools__button--pause");
@@ -60,6 +61,17 @@ if (dialogButtons) {
     dialogButton.addEventListener('click', () => {
       const dialog = document.querySelector(`#${dialogButton.getAttribute('data-dialog')}`);
       dialog.showModal();
+    });
+  });
+}
+
+const ma11yToolbarActivationButtons = document.querySelectorAll('a[href="#ma11y-tools"]');
+console.log(ma11yToolbarActivationButtons);
+if (ma11yToolbarActivationButtons) {
+  ma11yToolbarActivationButtons.forEach((button) => {
+    button.addEventListener('click', (e) => {
+      e.preventDefault();
+      ma11yToolbarElement.hidden = !ma11yToolbarElement.hidden;
     });
   });
 }
