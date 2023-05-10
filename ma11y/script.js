@@ -66,7 +66,6 @@ if (dialogButtons) {
 }
 
 const ma11yToolbarActivationButtons = document.querySelectorAll('a[href="#ma11y-tools"]');
-console.log(ma11yToolbarActivationButtons);
 if (ma11yToolbarActivationButtons) {
   ma11yToolbarActivationButtons.forEach((button) => {
     button.addEventListener('click', (e) => {
