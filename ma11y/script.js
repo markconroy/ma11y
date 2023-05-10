@@ -76,19 +76,6 @@ if (ma11yToolbarActivationButtons) {
   });
 }
 
-function handleMa11yToolbarHeight() {
-  ma11yToolbarHeight = document.querySelector(".ma11y-tools").offsetHeight;
-  mallyContainer.style.paddingTop = `${ma11yToolbarHeight}px`;
-}
-
-setTimeout(() => {
-  handleMa11yToolbarHeight();
-}, 50);
-
-window.addEventListener("resize", () => {
-  handleMa11yToolbarHeight();
-});
-
 // Read out loud function
 function readOutLoud(message) {
   const speech = new SpeechSynthesisUtterance();

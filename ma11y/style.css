@@ -1,3 +1,7 @@
+:root {
+  --height-toolbar: 75px;
+}
+
 .ma11y-body {
   position: absolute;
   inset: 0;
@@ -5,6 +9,7 @@
 
 .ma11y-container-body {
   position: relative;
+  padding-top: var(--height-toolbar);
 }
 
 .ma11y-tools {
@@ -13,6 +18,8 @@
   top: 0;
   left: 0;
   width: 100%;
+  height: var(--height-toolbar);
+  overflow-x: auto;
   padding: 1rem;
   border-bottom: 2px solid black;
   background-color: beige;
@@ -60,6 +67,7 @@
 /* Dialogs */
 .ma11y-dialog {
   width: 90vw;
+  overflow-x: auto;
 }
 
 /* Color Contrasts */
