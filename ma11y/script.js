@@ -83,7 +83,7 @@ function handleMa11yToolbarHeight() {
 
 setTimeout(() => {
   handleMa11yToolbarHeight();
-}, 150);
+}, 50);
 
 window.addEventListener("resize", () => {
   handleMa11yToolbarHeight();
