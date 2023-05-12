@@ -155,7 +155,6 @@ textModeButton.addEventListener("click", () => {
   );
   if (textModeButtonState === "false") {
     textModeButton.setAttribute("data-active", "true");
-    console.log(stylesheets);
     stylesheets.forEach((sheet) => {
       const sheetHref = sheet.href;
       sheet.setAttribute("data-href", sheetHref);
@@ -198,7 +197,6 @@ colorContrastButtons.forEach((colorContrastButton) => {
 // Ruler
 rulerButton.addEventListener("click", () => {
   const rulerButtonState = rulerButton.dataset.active;
-  console.log(rulerButtonState);
   const ruler = document.querySelector("#ma11y-ruler");
   if (ruler) {
     ruler.remove();
