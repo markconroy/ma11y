@@ -24,20 +24,22 @@ const ma11yColorContrastDialog = `
 `;
 
 const ma11yToolbar = `
-<div id="ma11y-tools" class="ma11y-tools" hidden>
-  <div class="ma11y-container">
+<div id="ma11y-tools" class="ma11y-tools" data-active="false">
+  <div class="ma11y-container ma11y-container--full-height padding-x">
     <div class="ma11y-buttons">
       <button type="button" class="ma11y-tools__button ma11y-tools__button--play" data-status="stopped">Play</button>
       <button type="button" class="ma11y-tools__button ma11y-tools__button--stop">Stop</button>
       <button type="button" class="ma11y-tools__button ma11y-tools__button--selected">Read Selected Text</button>
       <button type="button" class="ma11y-tools__button ma11y-tools__button--text" data-active="false">Text Mode</button>
       <button type="button" class="ma11y-tools__button ma11y-tools__button--color-contrast" data-dialog="color-contrast">Color Contrast</button>
+      <button type="button" class="ma11y-tools__button ma11y-tools__button--ruler" data-active="false">Ruler</button>
     </div>
   </div>
 </div>
 `;
 
-let ma11yToolbarHeight;
+const ma11yRuler = `<div id="ma11y-ruler" class="ma11y-ruler" data-active="true"></div>`;
+
 const body = document.querySelector("body");
 const oldBody = body.innerHTML;
 const newBody = `<div class="ma11y-container-body">${oldBody}</div>`;
@@ -45,8 +47,8 @@ body.innerHTML = newBody;
 body.classList.add("ma11y-body");
 body.insertAdjacentHTML("afterbegin", ma11yToolbar);
 body.insertAdjacentHTML("beforeend", ma11yColorContrastDialog);
-const mallyContainer = document.querySelector(".ma11y-container-body");
-const ma11yToolbarElement = document.querySelector('#ma11y-tools');
+const ma11yContainer = document.querySelector(".ma11y-container-body");
+const ma11yToolbarElement = document.querySelector("#ma11y-tools");
 
 const playButton = document.querySelector(".ma11y-tools__button--play");
 const pauseButton = document.querySelector(".ma11y-tools__button--pause");
@@ -55,22 +57,32 @@ const selectTextButton = document.querySelector(
   ".ma11y-tools__button--selected"
 );
 const textModeButton = document.querySelector(".ma11y-tools__button--text");
-const dialogButtons = document.querySelectorAll('[data-dialog]');
+const rulerButton = document.querySelector(".ma11y-tools__button--ruler");
+const dialogButtons = document.querySelectorAll("[data-dialog]");
 if (dialogButtons) {
   dialogButtons.forEach((dialogButton) => {
-    dialogButton.addEventListener('click', () => {
-      const dialog = document.querySelector(`#${dialogButton.getAttribute('data-dialog')}`);
+    dialogButton.addEventListener("click", () => {
+      const dialog = document.querySelector(
+        `#${dialogButton.getAttribute("data-dialog")}`
+      );
       dialog.showModal();
     });
   });
 }
 
-const ma11yToolbarActivationButtons = document.querySelectorAll('a[href="#ma11y-tools"]');
+const ma11yToolbarActivationButtons = document.querySelectorAll(
+  'a[href="#ma11y-tools"]'
+);
 if (ma11yToolbarActivationButtons) {
   ma11yToolbarActivationButtons.forEach((button) => {
-    button.addEventListener('click', (e) => {
+    button.addEventListener("click", (e) => {
       e.preventDefault();
-      ma11yToolbarElement.hidden = !ma11yToolbarElement.hidden;
+      const toolbarState = ma11yToolbarElement.dataset.active;
+      if (toolbarState === "false") {
+        ma11yToolbarElement.setAttribute("data-active", "true");
+      } else {
+        ma11yToolbarElement.setAttribute("data-active", "false");
+      }
     });
   });
 }
@@ -138,43 +150,61 @@ selectTextButton.addEventListener("click", () => {
 // Text mode
 textModeButton.addEventListener("click", () => {
   const textModeButtonState = textModeButton.getAttribute("data-active");
-  const stylesheets = Array.from(document.querySelectorAll("link[rel=stylesheet]"));
+  const stylesheets = Array.from(
+    document.querySelectorAll("link[rel=stylesheet]")
+  );
   if (textModeButtonState === "false") {
     textModeButton.setAttribute("data-active", "true");
     console.log(stylesheets);
     stylesheets.forEach((sheet) => {
       const sheetHref = sheet.href;
-      sheet.setAttribute('data-href', sheetHref);
+      sheet.setAttribute("data-href", sheetHref);
       sheet.removeAttribute("href");
     });
     handleAddMa11yStyles();
   } else if (textModeButtonState === "true") {
     stylesheets.forEach((sheet) => {
-      const sheetHref = sheet.getAttribute('data-href');
+      const sheetHref = sheet.getAttribute("data-href");
       sheet.setAttribute("href", sheetHref);
-      sheet.removeAttribute('data-href');
+      sheet.removeAttribute("data-href");
     });
     textModeButton.setAttribute("data-active", "false");
   }
 });
 
 // Colour contrast
-const colorContrastButtons = document.querySelectorAll('.ma11y-tools__button--contrast');
+const colorContrastButtons = document.querySelectorAll(
+  ".ma11y-tools__button--contrast"
+);
 colorContrastButtons.forEach((colorContrastButton) => {
-  colorContrastButton.addEventListener('click', () => {
-    const index = colorContrastButton.getAttribute('data-index');
+  colorContrastButton.addEventListener("click", () => {
+    const index = colorContrastButton.getAttribute("data-index");
     contents.classList.add("ma11y-container-body--contrast");
-    contents.removeAttribute('data-contrast');
-    contents.setAttribute('data-contrast', index);
-    body.setAttribute('data-contrast', index);
+    contents.removeAttribute("data-contrast");
+    contents.setAttribute("data-contrast", index);
+    body.setAttribute("data-contrast", index);
     colorContrastButtons.forEach((button) => {
-      button.setAttribute('data-active', 'false');
+      button.setAttribute("data-active", "false");
     });
-    colorContrastButton.setAttribute('data-active', 'true');
-    if(index === '0') {
-      contents.removeAttribute('data-contrast');
+    colorContrastButton.setAttribute("data-active", "true");
+    if (index === "0") {
+      contents.removeAttribute("data-contrast");
       contents.classList.remove("ma11y-container-body--contrast");
-      body.removeAttribute('data-contrast');
+      body.removeAttribute("data-contrast");
     }
   });
+});
+
+// Ruler
+rulerButton.addEventListener("click", () => {
+  const rulerButtonState = rulerButton.dataset.active;
+  console.log(rulerButtonState);
+  const ruler = document.querySelector("#ma11y-ruler");
+  if (ruler) {
+    ruler.remove();
+    rulerButton.setAttribute("data-active", "false");
+  } else {
+    ma11yContainer.insertAdjacentHTML("beforeend", ma11yRuler);
+    rulerButton.setAttribute("data-active", "true");
+  }
 });

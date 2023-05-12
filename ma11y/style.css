@@ -1,5 +1,14 @@
 :root {
   --height-toolbar: 75px;
+  --color-dark: #000;
+  --color-light: #fff;
+  --spacing: 1rem;
+  --spacing-small: calc(var(--spacing) * 0.75);
+  --spacing-xsmall: calc(var(--spacing) * 0.5);
+  --border-style: solid;
+  --border-width: 2px;
+  --border-color: var(--color-dark);
+  --border: var(--border-width) var(--border-style) var(--border-color);
 }
 
 .ma11y-body {
@@ -7,7 +16,7 @@
   inset: 0;
 }
 
-.ma11y-container-body {
+.ma11y-tools[data-active="true"] + .ma11y-container-body {
   position: relative;
   padding-top: var(--height-toolbar);
 }
@@ -20,32 +29,46 @@
   width: 100%;
   height: var(--height-toolbar);
   overflow-x: auto;
-  padding: 1rem;
-  border-bottom: 2px solid black;
+  padding: var(--spacing);
+  border-bottom: var(--border);
   background-color: beige;
+}
+
+.ma11y-tools[data-active="false"] {
+  display: none;
 }
 
 .ma11y-container {
   max-width: 960px;
   margin-right: auto;
   margin-left: auto;
-  padding-right: 1rem;
-  padding-left: 1rem;
+}
+
+.ma11y-container--full-height {
+  height: 100%;
+}
+
+.padding-x {
+  padding-left: var(--spacing);
+  padding-right: var(--spacing);
 }
 
 /* Buttons Styles */
 .ma11y-buttons {
   display: flex;
-  gap: 1rem;
+  gap: var(--spacing);
+  align-items: center;
+  height: 100%;
 }
 
 .ma11y-tools__button {
-  padding: 0.5rem 1rem;
+  padding: var(--spacing-small) var(--spacing);
   font-size: 1rem;
-  color: black;
-  border: 2px solid black;
+  color: var(--color-dark);
+  border: var(--border);
   border-radius: 0;
   margin-bottom: 0;
+  margin-top: 0;
 }
 
 .ma11y-tools__button--play {
@@ -75,12 +98,13 @@
   text-decoration: underline !important;
 }
 .ma11y-tools__button--contrast:focus {
-  outline: 3px dashed black;
-  outline-offset: 3px;
+  outline: var(--border);
+  outline-offset: var(--border-width);
 }
 
 .ma11y-tools__button--contrast[data-active="true"] {
-  box-shadow: 0 10px 0 black;
+  text-decoration: underline;
+  text-decoration-thickness: var(--border-width);
 }
 
 .ma11y-tools__button--contrast[data-index="1"],
@@ -142,4 +166,15 @@
 .ma11y-tools__button--contrast[data-index="5"]:hover {
   background-color: blue !important;
   color: yellow !important;
+}
+
+/* Ruler */
+.ma11y-ruler {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: var(--height-toolbar);
+  background-color: var(--color-dark);
+  transition: .3s;
 }
