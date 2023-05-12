@@ -158,7 +158,6 @@ textModeButton.addEventListener("click", () => {
   }
 });
 
-
 // Colour contrast
 const colorContrastButtons = document.querySelectorAll('.ma11y-tools__button--contrast');
 colorContrastButtons.forEach((colorContrastButton) => {
