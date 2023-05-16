@@ -9,6 +9,8 @@
   --border-width: 2px;
   --border-color: var(--color-dark);
   --border: var(--border-width) var(--border-style) var(--border-color);
+  --contrast-background: lightgrey;
+  --contrast-foreground: black;
 }
 
 .ma11y-body {
@@ -106,66 +108,78 @@
   text-decoration: underline;
   text-decoration-thickness: var(--border-width);
 }
+.ma11y-tools__button--contrast[data-index],
+.ma11y-body[data-contrast],
+.ma11y-container-body[data-contrast],
+.ma11y-container-body[data-contrast] * {
+  background-color: var(--contrast-background);
+  color: var(--contrast-foreground);
+}
+.ma11y-tools__button--contrast[data-index]:focus,
+.ma11y-tools__button--contrast[data-index]:hover {
+  --contrast-background: grey;
+  --contrast-foreground: white;
+}
 
 .ma11y-tools__button--contrast[data-index="1"],
 .ma11y-body[data-contrast="1"],
 .ma11y-container-body[data-contrast="1"],
 .ma11y-container-body[data-contrast="1"] * {
-  background-color: black !important;
-  color: white !important;
+  --contrast-background: black;
+  --contrast-foreground: white;
 }
 .ma11y-tools__button--contrast[data-index="1"]:focus,
 .ma11y-tools__button--contrast[data-index="1"]:hover {
-  background-color: white !important;
-  color: black !important;
+  --contrast-background: white;
+  --contrast-foreground: black;
 }
 .ma11y-tools__button--contrast[data-index="2"],
 .ma11y-body[data-contrast="2"],
 .ma11y-container-body[data-contrast="2"],
 .ma11y-container-body[data-contrast="2"] * {
-  background-color: yellow !important;
-  color: black !important;
+  --contrast-background: yellow;
+  --contrast-foreground: black;
 }
 .ma11y-tools__button--contrast[data-index="2"]:focus,
 .ma11y-tools__button--contrast[data-index="2"]:hover {
-  background-color: black !important;
-  color: yellow !important;
+  --contrast-background: black;
+  --contrast-foreground: yellow;
 }
 .ma11y-tools__button--contrast[data-index="3"],
 .ma11y-body[data-contrast="3"],
 .ma11y-container-body[data-contrast="3"],
 .ma11y-container-body[data-contrast="3"] * {
-  background-color: red !important;
-  color: white !important;
+  --contrast-background: red;
+  --contrast-foreground: white;
 }
 .ma11y-tools__button--contrast[data-index="3"]:focus,
 .ma11y-tools__button--contrast[data-index="3"]:hover {
-  background-color: white !important;
-  color: red !important;
+  --contrast-background: white;
+  --contrast-foreground: red;
 }
 .ma11y-tools__button--contrast[data-index="4"],
 .ma11y-body[data-contrast="4"],
 .ma11y-container-body[data-contrast="4"],
 .ma11y-container-body[data-contrast="4"] * {
-  background-color: blue !important;
-  color: white !important;
+  --contrast-background: blue;
+  --contrast-foreground: white;
 }
 .ma11y-tools__button--contrast[data-index="4"]:focus,
 .ma11y-tools__button--contrast[data-index="4"]:hover {
-  background-color: white !important;
-  color: blue !important;
+  --contrast-background: white;
+  --contrast-foreground: blue;
 }
 .ma11y-tools__button--contrast[data-index="5"],
 .ma11y-body[data-contrast="5"],
 .ma11y-container-body[data-contrast="5"],
 .ma11y-container-body[data-contrast="5"] * {
-  background-color: yellow !important;
-  color: blue !important;
+  --contrast-background: yellow;
+  --contrast-foreground: blue;
 }
 .ma11y-tools__button--contrast[data-index="5"]:focus,
 .ma11y-tools__button--contrast[data-index="5"]:hover {
-  background-color: blue !important;
-  color: yellow !important;
+  --contrast-background: blue;
+  --contrast-foreground: yellow;
 }
 
 /* Ruler */
