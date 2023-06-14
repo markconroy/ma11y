@@ -94,6 +94,7 @@ function readOutLoud(message) {
   speech.volume = 1;
   speech.rate = 0.9;
   speech.pitch = 1;
+  speech.lang = "en-UK";
   window.speechSynthesis.speak(speech);
 }
 
