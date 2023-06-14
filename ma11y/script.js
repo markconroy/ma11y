@@ -1,14 +1,26 @@
 // Add the styles
-function handleAddMa11yStyles() {
+// This function adds a stylesheet to the head of the page, which
+// styles the toolbar and anything that the toolbar adds to the page.
+// (e.g. the colour contrast settings).
+function addMa11yStyles() {
   const style = document.createElement("link");
   style.rel = "stylesheet";
   style.href = "https://ma11y.mark.ie/ma11y/style.css";
   const head = document.querySelector("head");
   head.appendChild(style);
 }
-handleAddMa11yStyles();
+addMa11yStyles();
 
-// Variables
+function handleState(item) {
+  const state = item.dataset.active;
+  if (state === "false") {
+    item.setAttribute("data-active", "true");
+  } else {
+    item.setAttribute("data-active", "false");
+  }
+}
+
+// HTML for the dialog when the colour contrast button is clicked.
 const ma11yColorContrastDialog = `
   <dialog id="color-contrast" class="ma11y-dialog ma11y-dialog--contrast">
     <h2>Choose color contrast</h2>
@@ -23,6 +35,7 @@ const ma11yColorContrastDialog = `
   <dialog>
 `;
 
+// HTML for the toolbar
 const ma11yToolbar = `
 <div id="ma11y-tools" class="ma11y-tools" data-active="false">
   <div class="ma11y-container ma11y-container--full-height padding-x">
@@ -31,12 +44,15 @@ const ma11yToolbar = `
       <button type="button" class="ma11y-tools__button ma11y-tools__button--stop">Stop</button>
       <button type="button" class="ma11y-tools__button ma11y-tools__button--selected">Read Selected Text</button>
       <button type="button" class="ma11y-tools__button ma11y-tools__button--text" data-active="false">Text Mode</button>
-      <button type="button" class="ma11y-tools__button ma11y-tools__button--color-contrast" data-dialog="color-contrast">Color Contrast</button>
+      <button type="button" class="ma11y-tools__button ma11y-tools__button--color-contrast" data-ma11y-dialog="color-contrast">Color Contrast</button>
     </div>
   </div>
 </div>
 `;
 
+// We take the current body that is on the site, then wrap the contents of that
+// in a div so we can add the toolbar above this new div in the HTML order.
+// We can then also add our dialogs after this new div.
 const body = document.querySelector("body");
 const oldBody = body.innerHTML;
 const newBody = `<div class="ma11y-container-body">${oldBody}</div>`;
@@ -54,18 +70,21 @@ const selectTextButton = document.querySelector(
   ".ma11y-tools__button--selected"
 );
 const textModeButton = document.querySelector(".ma11y-tools__button--text");
-const dialogButtons = document.querySelectorAll("[data-dialog]");
+const dialogButtons = document.querySelectorAll("[data-ma11y-dialog]");
 if (dialogButtons) {
   dialogButtons.forEach((dialogButton) => {
     dialogButton.addEventListener("click", () => {
       const dialog = document.querySelector(
-        `#${dialogButton.getAttribute("data-dialog")}`
+        `#${dialogButton.getAttribute("data-ma11y-dialog")}`
       );
       dialog.showModal();
     });
   });
 }
 
+// We create the activations buttons as an array, so people can have more than one
+// activation button on their site. For example, they might want one in a header menu
+// and also in a footer menu.
 const ma11yToolbarActivationButtons = document.querySelectorAll(
   'a[href="#ma11y-tools"]'
 );
@@ -73,12 +92,7 @@ if (ma11yToolbarActivationButtons) {
   ma11yToolbarActivationButtons.forEach((button) => {
     button.addEventListener("click", (e) => {
       e.preventDefault();
-      const toolbarState = ma11yToolbarElement.dataset.active;
-      if (toolbarState === "false") {
-        ma11yToolbarElement.setAttribute("data-active", "true");
-      } else {
-        ma11yToolbarElement.setAttribute("data-active", "false");
-      }
+      handleState(ma11yToolbarElement);
     });
   });
 }
@@ -145,6 +159,7 @@ selectTextButton.addEventListener("click", () => {
 });
 
 // Text mode
+// This is a very basic text mode. It removes all stylesheets from the page.
 textModeButton.addEventListener("click", () => {
   const textModeButtonState = textModeButton.getAttribute("data-active");
   const stylesheets = Array.from(
