@@ -32,13 +32,10 @@ const ma11yToolbar = `
       <button type="button" class="ma11y-tools__button ma11y-tools__button--selected">Read Selected Text</button>
       <button type="button" class="ma11y-tools__button ma11y-tools__button--text" data-active="false">Text Mode</button>
       <button type="button" class="ma11y-tools__button ma11y-tools__button--color-contrast" data-dialog="color-contrast">Color Contrast</button>
-      <button type="button" class="ma11y-tools__button ma11y-tools__button--ruler" data-active="false">Ruler</button>
     </div>
   </div>
 </div>
 `;
-
-const ma11yRuler = `<div id="ma11y-ruler" class="ma11y-ruler" data-active="true"></div>`;
 
 const body = document.querySelector("body");
 const oldBody = body.innerHTML;
@@ -57,7 +54,6 @@ const selectTextButton = document.querySelector(
   ".ma11y-tools__button--selected"
 );
 const textModeButton = document.querySelector(".ma11y-tools__button--text");
-const rulerButton = document.querySelector(".ma11y-tools__button--ruler");
 const dialogButtons = document.querySelectorAll("[data-dialog]");
 if (dialogButtons) {
   dialogButtons.forEach((dialogButton) => {
@@ -193,17 +189,4 @@ colorContrastButtons.forEach((colorContrastButton) => {
       body.removeAttribute("data-contrast");
     }
   });
-});
-
-// Ruler
-rulerButton.addEventListener("click", () => {
-  const rulerButtonState = rulerButton.dataset.active;
-  const ruler = document.querySelector("#ma11y-ruler");
-  if (ruler) {
-    ruler.remove();
-    rulerButton.setAttribute("data-active", "false");
-  } else {
-    ma11yContainer.insertAdjacentHTML("beforeend", ma11yRuler);
-    rulerButton.setAttribute("data-active", "true");
-  }
 });
