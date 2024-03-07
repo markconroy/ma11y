@@ -40,11 +40,11 @@ const ma11yToolbar = `
 <div id="ma11y-tools" class="ma11y-tools" data-active="false">
   <div class="ma11y-container ma11y-container--full-height padding-x">
     <div class="ma11y-buttons">
-      <button type="button" class="ma11y-tools__button ma11y-tools__button--play" data-status="stopped">Play</button>
-      <button type="button" class="ma11y-tools__button ma11y-tools__button--stop">Stop</button>
+      <button type="button" class="ma11y-tools__button ma11y-tools__button--play" data-status="stopped">Read page</button>
+      <button type="button" class="ma11y-tools__button ma11y-tools__button--stop">Stop reading</button>
       <button type="button" class="ma11y-tools__button ma11y-tools__button--selected">Read Selected Text</button>
-      <button type="button" class="ma11y-tools__button ma11y-tools__button--text" data-active="false">Text Mode</button>
-      <button type="button" class="ma11y-tools__button ma11y-tools__button--color-contrast" data-ma11y-dialog="color-contrast">Color Contrast</button>
+      <button type="button" class="ma11y-tools__button ma11y-tools__button--text" data-active="false">Text only mode</button>
+      <button type="button" class="ma11y-tools__button ma11y-tools__button--color-contrast" data-ma11y-dialog="color-contrast">Color contrast</button>
     </div>
   </div>
 </div>
